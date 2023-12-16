@@ -20,9 +20,31 @@
    34  ansible db -m file -a "path=test.txt state=touch"
    
    36  ansible db -m file -a "path=test state=directory"
-   37  ls
-   38  ssh  172.31.26.107
-  
+
+#delete directory or file
+
+    ansible db -m file -a "path=file.txt state=absent"
+
+#COPY FILE OR DIRECTORY FROM CONTROL SERVER TO TARGET SERVER
+
+     ansible db -m copy -a "src=dbserver dest=."
+
+#COPY FILE OR DIRECTORY FROM TARGET SERVER INTO DIFFERENT DIRECTORY IN THE REMOTE
+
+     ansible db -m copy -a "src=dbserver dest=./dev remote_src=yes"
+
+#FETCH TARGET TO CONTROL 
+
+    ansible db -m fetch -a "src=dev dest=./ flat=yes"
+
+    ansible db -m fetch -a "src=dev dest=."
+
+
+#PACKEGE MANAGMENT
+
+   ansible web -m yum -a "name=httpd state=present" -b
+    ansible web -m apt -a "name=httpd state=present" -b
+
    46  ansible all -m shell -a "cat /etc/hosts/ && pwd"
    47  cd ~
    48  ansible all -m shell -a "cat /etc/hosts/ && pwd"
