@@ -45,6 +45,14 @@
    ansible web -m yum -a "name=httpd state=present" -b
     ansible web -m apt -a "name=httpd state=present" -b
 
+#DEBUG MODULE
+
+ ansible all -m debug -a "var=inventory_hostname"
+
+#SETUP MODULE
+
+ansible all -m setup
+
    46  ansible all -m shell -a "cat /etc/hosts/ && pwd"
    47  cd ~
    48  ansible all -m shell -a "cat /etc/hosts/ && pwd"
