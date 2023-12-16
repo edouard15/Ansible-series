@@ -1,0 +1,35 @@
+  1  # list all adhoc command
+    5  ansible-doc -l
+
+
+    7  ansible localhost -i inventory -a "uptime"
+    
+   #generate and copy ssh key into the target host
+
+   ssh-keygen
+
+   20  ssh-copy-id ansible@172.31.22.110
+   
+   23  ssh-copy-id ansible@172.31.26.107
+   24  ssh-copy-id ansible@172.31.16.90
+   
+   29  ansible web -m ping
+   
+   #create filr or directory
+
+   34  ansible db -m file -a "path=test.txt state=touch"
+   
+   36  ansible db -m file -a "path=test state=directory"
+   37  ls
+   38  ssh  172.31.26.107
+  
+   46  ansible all -m shell -a "cat /etc/hosts/ && pwd"
+   47  cd ~
+   48  ansible all -m shell -a "cat /etc/hosts/ && pwd"
+
+   
+   60  ansible db -m file -a "path=file.txt state=touch mode=0400"
+   61  ansible db -m file -a "path=file.txt state=touch mode=0400 group=edouard"
+  #add user 
+   63  ansible db -m shell -a "adduser edouard" -b
+   64  ansible db -m file -a "path=file.txt state=touch mode=0400 group=edouard"
